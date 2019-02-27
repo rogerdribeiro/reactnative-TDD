@@ -1,21 +1,29 @@
-import React, { Fragment } from "react";
+import React, { Component } from "react";
 
 import { View, Text, FlatList } from "react-native";
 import Post from "../Post";
-// import styles from './styles';
 
-const List = ({ posts }) => {
-  console.log(posts);
+export default class List extends Component {
+  state = {
+    posts: [
+      //{ id: 1, title: "post 1", description: "descricao 1" }
+    ]
+  };
 
-  return (
-    <View>
-      {posts.length > 0 ? (
-        posts.map(item => <Post key={item.id} post={item} />)
-      ) : (
-        <Text>Nenhum post</Text>
-      )}
-    </View>
+  renderPosts = () => (
+    <FlatList
+      data={this.state.posts}
+      keyExtractor={item => String(item.id)}
+      renderItem={({ item }) => <Post post={item} />}
+    />
   );
-};
 
-export default List;
+  render() {
+    const { posts } = this.state;
+    return (
+      <View>
+        {posts.length > 0 ? this.renderPosts() : <Text>Nenhum post</Text>}
+      </View>
+    );
+  }
+}
