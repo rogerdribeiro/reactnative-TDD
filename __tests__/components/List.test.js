@@ -44,4 +44,12 @@ describe("Testing List", () => {
     wrapper.find(Button).simulate("press");
     expect(wrapper.state("posts")).toHaveLength(1);
   });
+
+  it("should delete post", () => {
+    const wrapper = shallow(<List />);
+    wrapper.setState({ posts });
+    wrapper.instance().deletePost(1);
+
+    expect(wrapper.state("posts")).toEqual(posts.filter(post => post.id !== 1));
+  });
 });

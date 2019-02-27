@@ -19,6 +19,9 @@ export default class List extends Component {
     const novoPost = { id: 1, title: "post 1", description: "descricao 1" };
     this.setState({ posts: [...this.state.posts, novoPost] });
   };
+  deletePost = id => {
+    this.setState({ posts: this.state.posts.filter(post => post.id !== id) });
+  };
 
   render() {
     const { posts } = this.state;
