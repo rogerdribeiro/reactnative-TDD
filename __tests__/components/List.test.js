@@ -42,6 +42,6 @@ describe("Testing List", () => {
   it("should add new post", () => {
     const wrapper = shallow(<List />);
     wrapper.find(Button).simulate("press");
-    expect(wrapper.state("posts").toHaveLength(1));
+    expect(wrapper.state("posts")).toHaveLength(1);
   });
 });

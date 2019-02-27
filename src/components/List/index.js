@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Button } from "react-native";
 import Post from "../Post";
 
 export default class List extends Component {
   state = {
-    posts: [
-      //{ id: 1, title: "post 1", description: "descricao 1" }
-    ]
+    posts: []
   };
 
   renderPosts = () => (
@@ -18,11 +15,17 @@ export default class List extends Component {
     />
   );
 
+  addPost = () => {
+    const novoPost = { id: 1, title: "post 1", description: "descricao 1" };
+    this.setState({ posts: [...this.state.posts, novoPost] });
+  };
+
   render() {
     const { posts } = this.state;
     return (
       <View>
         {posts.length > 0 ? this.renderPosts() : <Text>Nenhum post</Text>}
+        <Button title="Add post" onPress={this.addPost} />
       </View>
     );
   }
