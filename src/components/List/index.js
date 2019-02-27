@@ -11,7 +11,7 @@ export default class List extends Component {
     <FlatList
       data={this.state.posts}
       keyExtractor={item => String(item.id)}
-      renderItem={({ item }) => <Post post={item} />}
+      renderItem={({ item }) => <Post post={item} onDelete={this.deletePost} />}
     />
   );
 
@@ -19,6 +19,7 @@ export default class List extends Component {
     const novoPost = { id: 1, title: "post 1", description: "descricao 1" };
     this.setState({ posts: [...this.state.posts, novoPost] });
   };
+
   deletePost = id => {
     this.setState({ posts: this.state.posts.filter(post => post.id !== id) });
   };

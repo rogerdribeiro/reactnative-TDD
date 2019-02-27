@@ -1,13 +1,13 @@
 import React from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 
-// import styles from './styles';
-
-const Post = ({ post }) => (
+const Post = ({ post, onDelete }) => (
   <View>
     <Text>{post.title}</Text>
     <Text>{post.description}</Text>
+
+    <Button title="Delete post" onPress={onDelete(post.id)} />
   </View>
 );
 
